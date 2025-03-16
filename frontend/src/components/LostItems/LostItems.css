@@ -1,4 +1,9 @@
-
+.lost-items-view {
+    padding: 1.5rem;
+    background: none; /* Fully transparent */
+    position: relative; /* Ensure child elements can be positioned absolutely */
+    text-align: center; /* Center content */
+}
 
 /* Convert 'Lost Items' title into a button */
 .lost-items-view h2 {
