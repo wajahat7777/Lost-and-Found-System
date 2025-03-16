@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Lost-and-Found-System/static/css/main.f14bf7ff.css",
+    "main.js": "/Lost-and-Found-System/static/js/main.fe791473.js",
+    "static/media/home_background.jpg": "/Lost-and-Found-System/static/media/home_background.bcf4ce9546387807d699.jpg",
+    "index.html": "/Lost-and-Found-System/index.html",
+    "main.f14bf7ff.css.map": "/Lost-and-Found-System/static/css/main.f14bf7ff.css.map",
+    "main.fe791473.js.map": "/Lost-and-Found-System/static/js/main.fe791473.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f14bf7ff.css",
+    "static/js/main.fe791473.js"
+  ]
+}
