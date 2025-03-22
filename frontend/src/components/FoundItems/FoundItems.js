@@ -1,5 +1,5 @@
-import React from 'react';
-import './FoundItems.css';
+import React from "react";
+import "./FoundItems.css";
 
 const FoundItems = ({ filteredItems, setSelectedItem }) => {
   return (
@@ -7,14 +7,13 @@ const FoundItems = ({ filteredItems, setSelectedItem }) => {
       <h2>Found Items</h2>
       <div className="item-grid">
         {filteredItems
-          .filter((item) => item.type === 'found')
+          .filter((item) => item.type === "found")
           .map((item) => (
             <div
               key={item.id}
               className="item-card"
               onClick={() => setSelectedItem(item)}
             >
-              <img src={item.imageUrl} alt={item.title} />
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </div>
