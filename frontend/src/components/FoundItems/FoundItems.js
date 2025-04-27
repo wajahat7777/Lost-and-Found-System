@@ -14,6 +14,9 @@ const FoundItems = ({ filteredItems, setSelectedItem }) => {
               className="item-card"
               onClick={() => setSelectedItem(item)}
             >
+              {item.image && (
+                <img src={item.image} alt={item.title} style={{ width: '100%', height: '180px', objectFit: 'cover', borderRadius: '10px' }} />
+              )}
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </div>

@@ -1,23 +1,23 @@
-const express=require('express');
-const{registerUser,signInUser,userVerification}=require('../controllers/userSignUp');
-const{postLostItem}=require('../controllers/lostItemPost.js');
-const{postFoundItem}=require('../controllers/foundItemPost.js');
-const{searchItems}=require('../controllers/searchItems.js');
-const router=express.Router();
+const express = require('express');
+const { postLostItem } = require('../controllers/lostItemPost.js');
+const { postFoundItem } = require('../controllers/foundItemPost.js');
+const upload = require('../middleware/upload');
+const router = express.Router();
 
-//User Story No:1
-router.post('/register',registerUser);
-router.post('/signIn',signInUser);
-router.post('/verifyUser',userVerification);
+// Lost Items
+router.post('/post/lost', upload.single('image'), (req, res, next) => {
+    console.log('Lost item route hit');
+    console.log('Request body:', req.body);
+    console.log('Request file:', req.file);
+    next();
+}, postLostItem);
 
+// Found Items
+router.post('/post/found', upload.single('image'), (req, res, next) => {
+    console.log('Found item route hit');
+    console.log('Request body:', req.body);
+    console.log('Request file:', req.file);
+    next();
+}, postFoundItem);
 
-//User Story No:2
-router.post('/postLostItem',postLostItem);
-
-//User Story No:3
-router.post('/postFoundItem',postFoundItem);
-
-//User Story No:4
-router.get('/search',searchItems);
-
-module.exports=router;
+module.exports = router;

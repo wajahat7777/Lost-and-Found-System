@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
@@ -28,17 +29,17 @@ async function sendVerificationMail(email, firstName, secondName, verCode) {
 
 // Endpoint for log in
 exports.signInUser = async (req, res) => {
-    const { email, password } = req.body;
-    console.log('Email: ' + email);
-    console.log('Password: ' + password);
+    const { Email, Password } = req.body;
+    console.log('Email: ' + Email);
+    console.log('Password: ' + Password);
     
     try {
-        const validEmailHolder = await User.findOne({ Email: email.toLowerCase() });
+        const validEmailHolder = await User.findOne({ Email: Email.toLowerCase() });
         if (!validEmailHolder) {
             return res.status(401).json({ message: 'Email not found' });
         }
 
-        const validPasswordHolder = await bcrypt.compare(password, validEmailHolder.Password);
+        const validPasswordHolder = await bcrypt.compare(Password, validEmailHolder.Password);
         if (!validPasswordHolder) {
             return res.status(401).json({ message: 'Password does not match' });
         }
@@ -52,7 +53,7 @@ exports.signInUser = async (req, res) => {
 
         console.log(`Successfully logged into your account`);
         return res.status(200).json({
-            message: `Successfully logged into account registered on email: ${email}`,
+            message: `Successfully logged into account registered on email: ${Email}`,
             token
         });
 
@@ -111,17 +112,21 @@ exports.registerUser = async (req, res) => {
 
 // Endpoint for user verification
 exports.userVerification = async (req, res) => {
+    console.log('User verification endpoint called');
+    console.log('Request body:', req.body);
     try {
         const { email, secNum } = req.body;
-
         // Check if user exists in pending collection
         const tempUser = await pendUser.findOne({ Email: email});
+        console.log('Pending user found:', tempUser);
         if (!tempUser) {
+            console.log('No pending user found for email:', email);
             return res.status(400).json({ message: "No verification request found or expired." });
         }
-
         // Compare verification codes
+        console.log('Comparing codes:', tempUser.secNum, 'vs', secNum);
         if (tempUser.secNum !== parseInt(secNum)) {
+            console.log('Verification code mismatch');
             return res.status(400).json({ message: "Invalid verification code." });
         }
 
@@ -132,7 +137,8 @@ exports.userVerification = async (req, res) => {
             Email: tempUser.Email,
             Password: tempUser.Password,
             UserName: tempUser.UserName,
-            Number: tempUser.Number
+            Number: tempUser.Number,
+            Status: 'active'  // Explicitly set status to active
         });
 
         // Generate token

@@ -59,14 +59,6 @@ const Navigation = ({
             >
               My Items
             </button>
-            <button
-              className={`nav-link ${
-                currentView === "messages" ? "active" : ""
-              }`}
-              onClick={() => setCurrentView("messages")}
-            >
-              Messages
-            </button>
           </>
         )}
       </div>

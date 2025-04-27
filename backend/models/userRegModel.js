@@ -29,8 +29,12 @@ const UserSchema=mongoose.Schema(
     Password:{
         type:String,
         required:true
+    },
+    Status: {
+        type: String,
+        enum: ['active', 'inactive'],
+        default: 'active'
     }
-   
 });
 const User=mongoose.model('User',UserSchema);
 module.exports=User;
