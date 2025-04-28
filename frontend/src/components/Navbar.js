@@ -16,6 +16,7 @@ const Navbar = () => {
                     <Link to="/finder-claims" className="nav-link">Review Claims</Link>
                     <Link to="/login" className="nav-link">Login</Link>
                     <Link to="/register" className="nav-link">Register</Link>
+                    <Link to="/admin/login" className="nav-link admin-link">Admin Login</Link>
                 </div>
             </div>
         </nav>

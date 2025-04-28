@@ -13,6 +13,7 @@ const lfmsRoutes = require('./routes/lfmsRouters');
 const searchRoutes = require('./routes/searchRoutes');
 
 const claimRoutes = require('./routes/claimRoutes');
+const adminRoutes = require('./routes/adminRoutes'); // Add admin routes
 
 // Middleware for parsing JSON bodies
 app.use(express.json());
@@ -51,6 +52,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/lfms', lfmsRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/claims', claimRoutes);
+app.use('/api/admin', adminRoutes); // Add admin routes mounting
 
 
 // Error handling middleware

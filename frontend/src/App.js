@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// User Components
 import Login from "./components/Login/Login";
 import LostItems from "./components/LostItems/LostItems";
 import FoundItems from "./components/FoundItems/FoundItems";
@@ -7,12 +10,15 @@ import Navigation from "./components/Navigation/Navigation";
 import PostItem from "./components/PostItem";
 import MyItems from "./components/MyItems/MyItems";
 import SearchItems from "./components/SearchItems";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Register from './components/Register';
 import Verify from './components/Verify';
 import FinderClaims from './components/FinderClaims';
+
+// Admin Components
+import AdminLogin from './components/Admin/AdminLogin';
+import AdminDashboard from './components/Admin/AdminDashboard';
 
 function App() {
   // States for authentication
@@ -85,7 +91,7 @@ function App() {
       }
 
       localStorage.setItem('token', data.token);
-      
+
       setIsLoggedIn(true);
       setCurrentUser({
         id: data.id,
@@ -115,7 +121,6 @@ function App() {
 
       setRegistrationEmail(formData.Email);
       setAuthStep('verify');
-      
     } catch (error) {
       throw error;
     }
@@ -139,7 +144,6 @@ function App() {
 
       setAuthStep("login");
       return { success: true, message: "Account verified successfully! Please login." };
-      
     } catch (error) {
       throw error;
     }
@@ -201,6 +205,7 @@ function App() {
       <div className="App">
         <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Routes>
+          {/* User Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/register" element={<Register onRegister={handleRegister} />} />
@@ -211,6 +216,10 @@ function App() {
           <Route path="/lost-items" element={<LostItems />} />
           <Route path="/found-items" element={<FoundItems />} />
           <Route path="/finder-claims" element={<FinderClaims />} />
+
+          {/* Admin Routes (No protection) */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>
