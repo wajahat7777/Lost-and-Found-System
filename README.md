@@ -166,7 +166,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Ahmad Aqeel (github.com/AhamdAqeel1134)
 - WajahatUllah (github.com/Wajahat7777)
-- Talha Khurram 
+- Talha Khurram  (github.com/TalhaKhurram001)
 
 ## Acknowledgments
 
