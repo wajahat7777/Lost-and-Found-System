@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
     try {
         await mongoose.connect(
-            "mongodb+srv://AhmadAqeel:lfsmDataBase39.43.182.86@clusterforlfms.xn5ai.mongodb.net/?retryWrites=true&w=majority&appName=clusterForLFMS",
+            "//mongodb connection string, if you are using atlas",
            
         );
 
