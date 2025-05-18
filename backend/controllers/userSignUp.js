@@ -13,14 +13,14 @@ const transporter = nodemailer.createTransport({
     secure: true,
     port: 465,
     auth: {
-        user: 'ahmadmirza9987@gmail.com',
-        pass: 'fttm qqqn lzgr wmua'   // less secure app password
+        user: 'use your gmail or domain',
+        pass: 'use your app password here'   // less secure app password
     }
 });
 
 async function sendVerificationMail(email, firstName, secondName, verCode) {
     await transporter.sendMail({
-        from: 'ahmadmirza9987@gmail.com',
+        from: 'use your sender mail/or gmail',
         to: email,
         subject: 'LFMS Account Verification',
         text: `Dear ${firstName} ${secondName}, Your account verification code is: ${verCode}`
@@ -47,7 +47,7 @@ exports.signInUser = async (req, res) => {
         // Credentials matched
         const token = jwt.sign(
             { id: validEmailHolder._id, email: validEmailHolder.Email },
-            '22I-1134',
+            '//unique token id',
             { expiresIn: '2h' }
         );
 
@@ -144,7 +144,7 @@ exports.userVerification = async (req, res) => {
         // Generate token
         const token = jwt.sign(
             { id: newUser._id, email: newUser.Email },
-            '22I-1134',
+            '//unique token id',
             { expiresIn: '2h' }
         );
 
